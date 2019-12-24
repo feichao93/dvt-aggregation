@@ -4,7 +4,7 @@ import pkg from './package.json'
 import pegjs from 'rollup-plugin-pegjs'
 
 const config = output => ({
-  input: 'src/index.ts',
+  input: 'src/dvt-aggregation.ts',
   output,
   plugins: [
     typescript({ check: false }),
