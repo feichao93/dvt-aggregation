@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AVG/MAX/MIN 聚合表达式 编译结果 1`] = `
+"function anonymous(slice
+) {
+  let r = {};
+
+  r['safe_code_1'] = 0;
+  r['income'] = 0;
+  r['target'] = 0;
+  r['safe_code_0'] = 0;
+  r['max_income'] = -Infinity;
+  r['min_target'] = Infinity;
+
+  for (const d of slice) {
+    r['income'] += d['income'] || 0;
+    r['target'] += d['target'] || 0;
+    r['safe_code_0'] += d['income'] || 0;
+    r['safe_code_1'] += (d['safe_code_1'] || 1);
+    r['max_income'] = Math.max(r['max_income'], d['income']);
+    r['min_target'] = Math.min(r['min_target'], d['target']);
+  }
+
+  r['avg_income'] = (r['safe_code_0'] / r['safe_code_1']);
+
+  return r;
+}"
+`;
+
+exports[`SUM 聚合表达式 编译结果 1`] = `
+"function anonymous(slice
+) {
+  let r = {};
+
+  r['income'] = 0;
+  r['target'] = 0;
+
+  for (const d of slice) {
+    r['income'] += d['income'] || 0;
+    r['target'] += d['target'] || 0;
+  }
+
+
+
+  return r;
+}"
+`;
+
+exports[`复杂的计算表达式 编译结果 1`] = `
+"function anonymous(slice
+) {
+  let r = {};
+
+  r['income'] = 0;
+  r['target'] = 0;
+  r['safe_code_0'] = 0;
+  r['safe_code_1'] = -Infinity;
+  r['safe_code_4'] = -Infinity;
+  r['safe_code_2'] = Infinity;
+  r['safe_code_3'] = Infinity;
+
+  for (const d of slice) {
+    r['income'] += d['income'] || 0;
+    r['target'] += d['target'] || 0;
+    r['safe_code_0'] += d['income'] || 0;
+    r['safe_code_1'] = Math.max(r['safe_code_1'], d['target']);
+    r['safe_code_4'] = Math.max(r['safe_code_4'], d['income']);
+    r['safe_code_2'] = Math.min(r['safe_code_2'], d['income']);
+    r['safe_code_3'] = Math.min(r['safe_code_3'], d['target']);
+  }
+
+  r['code_1'] = ((r['target'] - r['income']) / r['safe_code_0']);
+  r['code_2'] = (r['safe_code_1'] - r['safe_code_2']);
+  r['code_3'] = (r['safe_code_3'] - r['safe_code_4']);
+  r['code_4'] = (r['code_2'] + r['code_3']);
+
+  return r;
+}"
+`;
+
+exports[`简单的计算表达式 编译结果 1`] = `
+"function anonymous(slice
+) {
+  let r = {};
+
+  r['income'] = 0;
+  r['target'] = 0;
+
+  for (const d of slice) {
+    r['income'] += d['income'] || 0;
+    r['target'] += d['target'] || 0;
+  }
+
+  r['act_rate'] = (r['income'] / r['target']);
+
+  return r;
+}"
+`;

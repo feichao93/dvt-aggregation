@@ -1,0 +1,54 @@
+{
+  "name": "@alife/dvt-aggregation",
+  "version": "0.2.2",
+  "description": "数据透视聚合计算表达式",
+  "sideEffects": false,
+  "module": "dist/dvt-aggregation.esm.js",
+  "main": "dist/dvt-aggregation.js",
+  "types": "dist/dvt-aggregation.d.ts",
+  "author": {
+    "name": "feichao.sfc",
+    "email": "feichao.sfc@alibaba-inc.com"
+  },
+  "scripts": {
+    "build": "rimraf dist/ && rollup --config rollup.config.js",
+    "prepublishOnly": "tnpm run build"
+  },
+  "tnpm": {
+    "mode": "yarn",
+    "lockfile": "enable"
+  },
+  "files": [
+    "dist",
+    "docs"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npm.alibaba-inc.com"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^6.0.0",
+    "@types/jest": "^24.0.24",
+    "@types/pegjs": "^0.10.1",
+    "chalk": "^3.0.0",
+    "jest": "^24.9.0",
+    "pegjs": "^0.10.0",
+    "pegjs-jest": "^0.0.2",
+    "pegjs-loader": "^0.5.5",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "rollup": "^1.27.9",
+    "rollup-plugin-pegjs": "^2.1.3",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "rollup-plugin-web-worker-loader": "^0.8.1",
+    "ts-jest": "^24.2.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.2"
+  }
+}
