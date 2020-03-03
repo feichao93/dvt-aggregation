@@ -1,6 +1,5 @@
 // @ts-ignore
 import _parser from './grammar.pegjs'
-import { Indicator } from './interfaces'
 
 const parser = _parser as {
   parse(expression: string): Expression
@@ -79,7 +78,10 @@ function convertItems(items: Item[]): Item[] {
             deps: [numerator, denominator],
             expr: {
               type: 'arithmetic',
-              terms: [{ type: 'field', code: numerator }, { type: 'field', code: denominator }],
+              terms: [
+                { type: 'field', code: numerator },
+                { type: 'field', code: denominator },
+              ],
               ops: ['/'],
             },
           },
@@ -143,7 +145,13 @@ function convertItems(items: Item[]): Item[] {
 
 type Item = { code: string; expr: Expression; deps: string[] }
 
-function parseIndicators(indicators: ReadonlyArray<Indicator>): Item[] {
+type IndicatorConfig = {
+  name: string
+  code: string
+  expression?: string
+}
+
+function parseIndicators(indicators: IndicatorConfig[]): Item[] {
   const allIndCodes = new Set(indicators.map(ind => ind.code))
   return indicators.map(ind => {
     if (ind.expression == null) {
@@ -384,7 +392,7 @@ function mergeDeps(deps: string[], appendDeps: string[]) {
   return result
 }
 
-export default function createAggregateFunction(indicators: readonly Indicator[]): (slice: any[]) => any {
+export default function createAggregateFunction(indicators: IndicatorConfig[]): (slice: any[]) => any {
   const template = emit(topologicalSort(convertItems(parseIndicators(indicators))))
   return new Function('slice', template) as any
 }
