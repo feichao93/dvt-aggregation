@@ -1,5 +1,4 @@
-import createAggregateFunction from './createAggregateFunction'
-import { Indicator } from './interfaces'
+import createAggregateFunction, { IndicatorConfig } from './createAggregateFunction'
 
 const testData = [
   { income: 20, target: 80 },
@@ -10,7 +9,7 @@ const testData = [
 ]
 
 describe('SUM 聚合表达式', () => {
-  const indicators: Indicator[] = [
+  const indicators: IndicatorConfig[] = [
     { code: 'income', name: '收入', expression: 'SUM(income)' },
     { code: 'target', name: '目标', expression: 'SUM(target)' },
   ]
@@ -28,7 +27,7 @@ describe('SUM 聚合表达式', () => {
 })
 
 describe('简单的计算表达式', () => {
-  const indicators: Indicator[] = [
+  const indicators: IndicatorConfig[] = [
     { code: 'income', name: '收入', expression: 'SUM(income)' },
     { code: 'target', name: '目标', expression: 'SUM(target)' },
     { code: 'act_rate', name: '达成率', expression: 'income / target' },
@@ -46,7 +45,7 @@ describe('简单的计算表达式', () => {
 })
 
 describe('AVG/MAX/MIN 聚合表达式', () => {
-  const indicators: Indicator[] = [
+  const indicators: IndicatorConfig[] = [
     { code: 'income', name: 'income', expression: 'SUM(income)' },
     { code: 'target', name: 'target', expression: 'SUM(target)' },
     { code: 'max_income', name: '最大收入', expression: 'MAX(income)' },
@@ -68,7 +67,7 @@ describe('AVG/MAX/MIN 聚合表达式', () => {
 })
 
 describe('复杂的计算表达式', () => {
-  const indicators: Indicator[] = [
+  const indicators: IndicatorConfig[] = [
     { code: 'income', name: '收入', expression: 'SUM(income)' },
     { code: 'target', name: '目标', expression: 'SUM(target)' },
     { code: 'code_1', name: 'code_1', expression: '(target - income) / SUM(income)' },

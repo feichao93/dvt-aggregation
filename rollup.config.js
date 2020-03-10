@@ -2,6 +2,7 @@ import webWorkerLoader from 'rollup-plugin-web-worker-loader'
 import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
 import pegjs from 'rollup-plugin-pegjs'
+import replace from '@rollup/plugin-replace'
 
 const config = output => ({
   input: 'src/dvt-aggregation.ts',
@@ -13,6 +14,7 @@ const config = output => ({
       inline: true,
       enableUnicodeSupport: true,
     }),
+    replace({ DVT_AGGREGATION_VERSION: JSON.stringify(pkg.version) }),
   ],
   treeshake: {
     moduleSideEffects: false,
