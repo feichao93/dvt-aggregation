@@ -1,6 +1,6 @@
 {
   "name": "dvt-aggregation",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "数据透视聚合计算表达式",
   "sideEffects": false,
   "module": "dist/dvt-aggregation.esm.js",
